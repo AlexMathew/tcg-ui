@@ -6,6 +6,9 @@ def reinitialize():
 	with open("templates/game.html", "w") as f:
 		f.write(reinit_text)
 		
+def toss():
+	return random.randrange(1, 3)
+
 def cardset():
 	conn = psycopg2.connect("dbname = stat_database user = postgres password = postgres")
 	c = conn.cursor()
@@ -23,7 +26,9 @@ def cardset():
 		cardset2.append(player_list[opt2][1])
 
 	html_text = open("templates/game.html").read()
-	new_html_text = html_text.replace("***player2***", "</div><div>".join(cardset2)).replace("***player1***", "</div><div>".join(cardset1))
+	new_html_text = html_text.replace("***tosswinner***", "Player " + str(toss()) + " won the toss, so he will get to start") \
+					.replace("***player2***", "</div><div>".join(cardset2)) \
+					.replace("***player1***", "</div><div>".join(cardset1)) \
 
 	with open("templates/game.html", "w") as f:
 		f.write(new_html_text)

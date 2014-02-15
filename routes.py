@@ -18,6 +18,10 @@ def setup():
 	setup_cardsets.reinitialize()
 	return render_template('setup.html')
 
+@app.route('/toss')
+def toss():
+	return render_template('toss.html')
+	
 @app.route('/game')
 def game():
 	setup_cardsets.cardset()
