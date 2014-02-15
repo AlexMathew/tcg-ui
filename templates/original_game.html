@@ -1,18 +1,16 @@
 {% extends "template.html" %}
 {% block content %}
-	<div class="jumbotron">
-		<h1>The game</h1>
-	</div>
-	<div class="well">***tosswinner***</div>
-	<h3>Player 1's card set :</h3>
+	
+	<h3>***player1name***</h3>
 	<div>
-		<div>***player1***</div>
+		<img src="***player1img***" margin="30px" padding="30px" width="100" height="150" />
 	<div>
 	<div></div>
-	<h3>Player 2's card set :</h3>
+	<h3>***player2name***</h3>
 	<div>
-		<div>***player2***</div>
-	</div>
+		<img src="***player2img***" margin="30px" padding="30px" width="100" height="150" />
+	<div>
 	<div></div>
+	<a href="/game"><button type="button" class="btn btn-lg btn-primary glow">Next pair</button></a>
 
 {% endblock %}

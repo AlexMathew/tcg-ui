@@ -1,34 +1,38 @@
 import random
-import psycopg2
+from player_stats import PlayerStats
 
-def reinitialize():
-	reinit_text = open("templates/original_game.html").read()
-	with open("templates/game.html", "w") as f:
-		f.write(reinit_text)
+class CardOperations(object):
+
+	def __init__(self):
+		return
+
+	def toss(self):
+		return random.randrange(1, 3)
+
+	def toss_result(self):
+		html_begin_text = open("templates/original_begin.html").read()
+		new_html_begin_text = html_begin_text \
+							  .replace("***tosswinner***", "Player " + str(self.toss()) + " won the toss, so he will get to start") 
 		
-def toss():
-	return random.randrange(1, 3)
+		with open("templates/begin.html", "w") as f:
+			f.write(new_html_begin_text)
 
-def cardset():
-	conn = psycopg2.connect("dbname = stat_database user = postgres password = postgres")
-	c = conn.cursor()
-	c.execute("SELECT * FROM base_table")
-	player_list = c.fetchall()
-	options = range(len(player_list))
-	cardset1 = []
-	cardset2 = []
+	def cardset(self):
+		self.ps = PlayerStats()
+		self.ps.generate_cards()
 
-	for i in xrange(21):
-		random.shuffle(options)
-		opt1 = options.pop()
-		opt2 = options.pop(0)
-		cardset1.append(player_list[opt1][1])
-		cardset2.append(player_list[opt2][1])
+	def update_page(self):
+		p1 = self.ps.PlayerSet1[0]
+		self.ps.PlayerSet1.rotate(-1)
+		p2 = self.ps.PlayerSet2[0]
+		self.ps.PlayerSet2.rotate(-1)
 
-	html_text = open("templates/game.html").read()
-	new_html_text = html_text.replace("***tosswinner***", "Player " + str(toss()) + " won the toss, so he will get to start") \
-					.replace("***player2***", "</div><div>".join(cardset2)) \
-					.replace("***player1***", "</div><div>".join(cardset1)) \
+		html_text = open("templates/original_game.html").read()
+		new_html_text = html_text \
+						.replace("***player1name***", str(p1.name)) \
+						.replace("***player1img***", str(p1.img_url)) \
+						.replace("***player2name***", str(p2.name)) \
+						.replace("***player2img***", str(p2.img_url))
 
-	with open("templates/game.html", "w") as f:
-		f.write(new_html_text)
+		with open("templates/game.html", "w") as f:
+			f.write(new_html_text) 

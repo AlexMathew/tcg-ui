@@ -1,7 +1,9 @@
 import psycopg2
 import random
 from flask import Flask, render_template
-import setup_cardsets
+from setup_cardsets import CardOperations
+
+co = CardOperations()
 
 app = Flask(__name__)
 
@@ -15,16 +17,21 @@ def rules():
 	
 @app.route('/setup')
 def setup():
-	setup_cardsets.reinitialize()
 	return render_template('setup.html')
 
 @app.route('/toss')
 def toss():
+	co.cardset()
 	return render_template('toss.html')
-	
+
+@app.route('/begin')
+def begin():
+	co.toss_result()
+	return render_template('begin.html')
+
 @app.route('/game')
 def game():
-	setup_cardsets.cardset()
+	co.update_page()
 	return render_template('game.html')
 
 if __name__ == '__main__':
