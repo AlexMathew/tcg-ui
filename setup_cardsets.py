@@ -1,5 +1,5 @@
 import random
-from player_stats import PlayerStats
+from player_stats import PlayerStats, stats_types
 
 class CardOperations(object):
 
@@ -44,7 +44,64 @@ class CardOperations(object):
 						.replace("***playername***", str(p.name)) \
 						.replace("***playerimg***", str(p.img_url))
 
-		with open("templates/game.html", "w") as f:
-			f.write(new_html_text) 
+#		with open("templates/game.html", "w") as f:
+#			f.write(new_html_text) 
 
 		self.modify_ctrl(random.randrange(0, 2))
+
+		statline = '<li><a href="#">***stat*** - ***value***</a></li>'
+
+		stats = ""
+
+		for i in stats_types:
+			stat = stats_types[i]
+			if i==15 or i==17 or i==18:
+				continue
+			stats += statline \
+					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
+					 .replace("***value***", str(p.test[i]))
+
+		new_html_text = new_html_text \
+						.replace("***teststats***", stats)
+
+		stats = ""
+
+		for i in stats_types:
+			stat = stats_types[i]
+			if i==15 or i==17 or i==18:
+				continue
+			stats += statline \
+					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
+					 .replace("***value***", str(p.odi[i]))
+
+		new_html_text = new_html_text \
+						.replace("***odistats***", stats)
+
+		stats = ""
+
+		for i in stats_types:
+			stat = stats_types[i]
+			if i==15 or i==17 or i==18:
+				continue
+			stats += statline \
+					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
+					 .replace("***value***", str(p.t20[i]))
+
+		new_html_text = new_html_text \
+						.replace("***t20stats***", stats)
+
+		stats = ""
+
+		for i in stats_types:
+			stat = stats_types[i]
+			if i==15 or i==17 or i==18:
+				continue
+			stats += statline \
+					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
+					 .replace("***value***", str(p.fc[i]))
+
+		new_html_text = new_html_text \
+						.replace("***fcstats***", stats)
+
+		with open("templates/game.html", "w") as f:
+			f.write(new_html_text) 

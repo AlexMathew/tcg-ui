@@ -1,59 +1,51 @@
 {% extends "template.html" %}
 {% block content %}
-	<style type="text/css">
-		.bs-example{
-   		 	margin: 20px;
-    	}
-	</style>
-	<div style="float:left position:relative display:inline" width="400">
-		<div margin="15px" padding="15px">
-			<h3>Player 2's move</h3>
-		</div> 
-		<div margin="15px" padding="15px">
-			<h3>Jesse Ryder</h3>
-			<div>
-				<img src="http://espncricinfo.com/inline/content/image/501409.html?alt=1" width="100" height="150" />
-			<div>
-		</div>
-	</div>
-	<div class="bs-example">
-    	<form>
-    		<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Tests <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-        	<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">ODIs <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-        	<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">T20Is <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-        	<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">First Class <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-    	</form>
-	</div>
-	<div style ="float:right position:relative display:inline" margin="45px" padding="45px" width="300">
-		<a href="/game"><button type="button" class="btn btn-lg btn-primary glow">Make move</button></a>
-	</div>
+    <style type="text/css">
+        .bs-example{
+            margin: 20px;
+        }
+    </style>
+    <div style="float:left position:relative display:inline" width="400">
+        <div margin="15px" padding="15px">
+            <h3>Player 1's move</h3>
+        </div> 
+        <div margin="15px" padding="15px">
+            <h3>Tim Bresnan</h3>
+            <div>
+                <img src="http://espncricinfo.com/inline/content/image/565717.html?alt=1" width="100" height="150" />
+            <div>
+        </div>
+    </div>
+    <div class="bs-example">
+        <form>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Tests <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="#">Matches played - 23</a></li><li><a href="#">Innings batted - 26</a></li><li><a href="#">Not outs - 4</a></li><li><a href="#">Runs scored - 575</a></li><li><a href="#">Highest inns score - 91</a></li><li><a href="#">Batting average - 26.13</a></li><li><a href="#">Balls faced - 1458</a></li><li><a href="#">Batting strike rate - 39.43</a></li><li><a href="#">Hundreds scored - 0</a></li><li><a href="#">Fifties scored - 3</a></li><li><a href="#">Boundary fours - 67</a></li><li><a href="#">Boundary sixes - 1</a></li><li><a href="#">Catches taken - 8</a></li><li><a href="#">Stumpings made - 0</a></li><li><a href="#">Innings bowled in - 41</a></li><li><a href="#">Wickets taken - 72</a></li><li><a href="#">Best innings bowling - 5/48</a></li><li><a href="#">Best match bowling - 8/141</a></li><li><a href="#">Bowling average - 32.73</a></li><li><a href="#">Economy rate - 3.02</a></li><li><a href="#">Bowling strike rate - 64.9</a></li><li><a href="#">Four wkts in an inns - 4</a></li><li><a href="#">Five wkts in an inns - 1</a></li><li><a href="#">Ten wkts in a match - 0</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">ODIs <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="#">Matches played - 81</a></li><li><a href="#">Innings batted - 61</a></li><li><a href="#">Not outs - 18</a></li><li><a href="#">Runs scored - 846</a></li><li><a href="#">Highest inns score - 80</a></li><li><a href="#">Batting average - 19.67</a></li><li><a href="#">Balls faced - 914</a></li><li><a href="#">Batting strike rate - 92.56</a></li><li><a href="#">Hundreds scored - 0</a></li><li><a href="#">Fifties scored - 1</a></li><li><a href="#">Boundary fours - 86</a></li><li><a href="#">Boundary sixes - 6</a></li><li><a href="#">Catches taken - 20</a></li><li><a href="#">Stumpings made - 0</a></li><li><a href="#">Innings bowled in - 80</a></li><li><a href="#">Wickets taken - 101</a></li><li><a href="#">Best innings bowling - 5/48</a></li><li><a href="#">Best match bowling - 5/48</a></li><li><a href="#">Bowling average - 36.39</a></li><li><a href="#">Economy rate - 5.45</a></li><li><a href="#">Bowling strike rate - 40.0</a></li><li><a href="#">Four wkts in an inns - 3</a></li><li><a href="#">Five wkts in an inns - 1</a></li><li><a href="#">Ten wkts in a match - 0</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">T20Is <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="#">Matches played - 28</a></li><li><a href="#">Innings batted - 17</a></li><li><a href="#">Not outs - 6</a></li><li><a href="#">Runs scored - 123</a></li><li><a href="#">Highest inns score - 23</a></li><li><a href="#">Batting average - 11.18</a></li><li><a href="#">Balls faced - 120</a></li><li><a href="#">Batting strike rate - 102.5</a></li><li><a href="#">Hundreds scored - 0</a></li><li><a href="#">Fifties scored - 0</a></li><li><a href="#">Boundary fours - 8</a></li><li><a href="#">Boundary sixes - 1</a></li><li><a href="#">Catches taken - 9</a></li><li><a href="#">Stumpings made - 0</a></li><li><a href="#">Innings bowled in - 28</a></li><li><a href="#">Wickets taken - 21</a></li><li><a href="#">Best innings bowling - 3/10</a></li><li><a href="#">Best match bowling - 3/10</a></li><li><a href="#">Bowling average - 33.47</a></li><li><a href="#">Economy rate - 7.58</a></li><li><a href="#">Bowling strike rate - 26.4</a></li><li><a href="#">Four wkts in an inns - 0</a></li><li><a href="#">Five wkts in an inns - 0</a></li><li><a href="#">Ten wkts in a match - 0</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">First Class <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="#">Matches played - 130</a></li><li><a href="#">Innings batted - 170</a></li><li><a href="#">Not outs - 29</a></li><li><a href="#">Runs scored - 3765</a></li><li><a href="#">Highest inns score - 126</a></li><li><a href="#">Batting average - 26.7</a></li><li><a href="#">Balls faced - 8006</a></li><li><a href="#">Batting strike rate - 47.02</a></li><li><a href="#">Hundreds scored - 3</a></li><li><a href="#">Fifties scored - 17</a></li><li><a href="#">Boundary fours - 0</a></li><li><a href="#">Boundary sixes - 0</a></li><li><a href="#">Catches taken - 51</a></li><li><a href="#">Stumpings made - 0</a></li><li><a href="#">Innings bowled in - 0</a></li><li><a href="#">Wickets taken - 368</a></li><li><a href="#">Best innings bowling - 5/42</a></li><li><a href="#">Best match bowling - 0</a></li><li><a href="#">Bowling average - 31.25</a></li><li><a href="#">Economy rate - 3.07</a></li><li><a href="#">Bowling strike rate - 61.0</a></li><li><a href="#">Four wkts in an inns - 19</a></li><li><a href="#">Five wkts in an inns - 6</a></li><li><a href="#">Ten wkts in a match - 0</a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div style ="float:right position:relative display:inline" margin="45px" padding="45px" width="300">
+        <a href="/game"><button type="button" class="btn btn-lg btn-primary glow">Make move</button></a>
+    </div>
 
 {% endblock %}

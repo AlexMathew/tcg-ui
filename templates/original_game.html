@@ -1,59 +1,51 @@
 {% extends "template.html" %}
 {% block content %}
-	<style type="text/css">
-		.bs-example{
-   		 	margin: 20px;
-    	}
-	</style>
-	<div style="float:left position:relative display:inline" width="400">
-		<div margin="15px" padding="15px">
-			<h3>Player ***inctrl***'s move</h3>
-		</div> 
-		<div margin="15px" padding="15px">
-			<h3>***playername***</h3>
-			<div>
-				<img src="***playerimg***" width="100" height="150" />
-			<div>
-		</div>
-	</div>
-	<div class="bs-example">
-    	<form>
-    		<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Tests <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-        	<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">ODIs <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-        	<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">T20Is <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-        	<div class="btn-group">
-            	<button data-toggle="dropdown" class="btn btn-info dropdown-toggle">First Class <span class="caret"></span></button>
-            	<ul class="dropdown-menu">
-                	<li><a href="#">Stat 1</a></li>
-                	<li><a href="#">Stat 2</a></li>
-                	<li><a href="#">Stat 3</a></li>
-            	</ul>
-        	</div>
-    	</form>
-	</div>
-	<div style ="float:right position:relative display:inline" margin="45px" padding="45px" width="300">
-		<a href="/game"><button type="button" class="btn btn-lg btn-primary glow">Make move</button></a>
-	</div>
+    <style type="text/css">
+        .bs-example{
+            margin: 20px;
+        }
+    </style>
+    <div style="float:left position:relative display:inline" width="400">
+        <div margin="15px" padding="15px">
+            <h3>Player ***inctrl***'s move</h3>
+        </div> 
+        <div margin="15px" padding="15px">
+            <h3>***playername***</h3>
+            <div>
+                <img src="***playerimg***" width="100" height="150" />
+            <div>
+        </div>
+    </div>
+    <div class="bs-example">
+        <form>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Tests <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                ***teststats***
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">ODIs <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                ***odistats***
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">T20Is <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                ***t20stats***
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">First Class <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                ***fcstats***
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div style ="float:right position:relative display:inline" margin="45px" padding="45px" width="300">
+        <a href="/game"><button type="button" class="btn btn-lg btn-primary glow">Make move</button></a>
+    </div>
 
 {% endblock %}
