@@ -1,8 +1,10 @@
 {% extends "template.html" %}
 {% block content %}
-	<div class="jumbotron">
-		<h1>Start game !</h1>
-	</div>
+	<ol class="breadcrumb">
+		<li><a href="/setup">Setup</a></li>
+		<li><a href="/toss">Toss</a></li>
+		<li class="active">Game begin</li>
+	</ol>
 	<div class="well">***tosswinner***</div>
 	<div class="btn-group">
 		<a href="/game"><button type="button" style="width:6em" class="btn btn-lg btn-primary glow">Let's begin !</button></a>
