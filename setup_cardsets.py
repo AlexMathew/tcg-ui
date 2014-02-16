@@ -49,7 +49,7 @@ class CardOperations(object):
 
 		self.modify_ctrl(random.randrange(0, 2))
 
-		statline = '<li><a href="#">***stat*** - ***value***</a></li>'
+		statline = '<li><a href="/game">***stat*** - ***value***</a></li>'
 
 		stats = ""
 
