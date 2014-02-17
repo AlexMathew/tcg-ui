@@ -35,8 +35,12 @@ class CardOperations(object):
 
 		if self.in_ctrl == 0:
 			p = p1
+			self.ctrl = p1
+			self.vs = p2
 		else:
 			p = p2
+			self.ctrl = p2
+			self.vs = p1
 
 		html_text = open("templates/original_game.html").read()
 		new_html_text = html_text \
@@ -44,20 +48,19 @@ class CardOperations(object):
 						.replace("***playername***", str(p.name)) \
 						.replace("***playerimg***", str(p.img_url))
 
-#		with open("templates/game.html", "w") as f:
-#			f.write(new_html_text) 
-
 		self.modify_ctrl(random.randrange(0, 2))
 
-		statline = '<li><a href="/game">***stat*** - ***value***</a></li>'
+		statline = '<li><a href="/game/***statlink***">***stat*** - ***value***</a></li>'
 
 		stats = ""
+		linker = 1
 
 		for i in stats_types:
 			stat = stats_types[i]
 			if i==15 or i==17 or i==18:
 				continue
 			stats += statline \
+					 .replace("***statlink***", str(linker*100 + i)) \
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.test[i]))
 
@@ -65,12 +68,14 @@ class CardOperations(object):
 						.replace("***teststats***", stats)
 
 		stats = ""
+		linker = 2
 
 		for i in stats_types:
 			stat = stats_types[i]
 			if i==15 or i==17 or i==18:
 				continue
 			stats += statline \
+					 .replace("***statlink***", str(linker*100 + i)) \
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.odi[i]))
 
@@ -78,12 +83,14 @@ class CardOperations(object):
 						.replace("***odistats***", stats)
 
 		stats = ""
+		linker = 3
 
 		for i in stats_types:
 			stat = stats_types[i]
 			if i==15 or i==17 or i==18:
 				continue
 			stats += statline \
+					 .replace("***statlink***", str(linker*100 + i)) \
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.t20[i]))
 
@@ -91,12 +98,14 @@ class CardOperations(object):
 						.replace("***t20stats***", stats)
 
 		stats = ""
+		linker = 4
 
 		for i in stats_types:
 			stat = stats_types[i]
 			if i==15 or i==17 or i==18:
 				continue
 			stats += statline \
+					 .replace("***statlink***", str(linker*100 + i)) \
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.fc[i]))
 

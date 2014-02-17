@@ -1,5 +1,3 @@
-import psycopg2
-import random
 from flask import Flask, render_template
 from setup_cardsets import CardOperations
 
@@ -31,6 +29,12 @@ def begin():
 
 @app.route('/game')
 def game():
+	co.update_page()
+	return render_template('game.html')
+
+@app.route('/game/<int:statval>')
+def game_move(statval):
+	print statval
 	co.update_page()
 	return render_template('game.html')
 
