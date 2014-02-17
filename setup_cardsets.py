@@ -2,9 +2,27 @@ import random
 from player_stats import PlayerStats, stats_types
 
 def compare_bbf(bbf1, bbf2):
-	if bbf1[0] == bbf2[0]:
-		return not bbf1 > bbf2
-	return bbf1 > bbf2
+	if not '/' in bbf1:
+		if not '/' in bbf2:
+			return True
+		return False
+	if not '/' in bbf2:
+		return True
+	
+	w1, r1 = bbf1.split('/')
+	w1, r1 = int(w1), int(r1)
+	w2, r2 = bbf2.split('/')
+	w2, r2 = int(w2), int(r2)
+
+	if w1 > w2:
+		return True
+	elif w2 > w1:
+		return False
+	else:
+		if r1 < r2:
+			return True
+		else:
+			return False
 
 def compare_with_id(stat_id, stat1, stat2):
 	if int(stat1) == 0:
@@ -209,6 +227,7 @@ class CardOperations(object):
 					if len(self.ps.PlayerSet2) == 0:
 						return True
 				self.modify_ctrl((self.in_ctrl + 1) % 2)
+
 		return False
 
 	def update_completion(self):
