@@ -5,7 +5,6 @@ class CardOperations(object):
 
 	def __init__(self):
 		self.in_ctrl = 0
-		return
 
 	def modify_ctrl(self, new_ctrl):
 		self.in_ctrl = new_ctrl
@@ -27,7 +26,7 @@ class CardOperations(object):
 		self.ps = PlayerStats()
 		self.ps.generate_cards()
 
-	def update_page(self):
+	def update_page(self, result):
 		p1 = self.ps.PlayerSet1[0]
 		self.ps.PlayerSet1.rotate(-1)
 		p2 = self.ps.PlayerSet2[0]
@@ -37,13 +36,19 @@ class CardOperations(object):
 			p = p1
 			self.ctrl = p1
 			self.vs = p2
+			self.ctrlset = self.ps.PlayerSet1
+			self.vsset = self.ps.PlayerSet2
 		else:
 			p = p2
 			self.ctrl = p2
 			self.vs = p1
+			self.ctrlset = self.ps.PlayerSet2
+			self.vsset = self.ps.PlayerSet1
 
 		html_text = open("templates/original_game.html").read()
+
 		new_html_text = html_text \
+						.replace("***result***", "RESULT" if not result else "!!!!!") \
 						.replace("***inctrl***", str(self.in_ctrl + 1)) \
 						.replace("***playername***", str(p.name)) \
 						.replace("***playerimg***", str(p.img_url))

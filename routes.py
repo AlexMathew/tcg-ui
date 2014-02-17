@@ -29,13 +29,13 @@ def begin():
 
 @app.route('/game')
 def game():
-	co.update_page()
+	co.update_page(0)
 	return render_template('game.html')
 
 @app.route('/game/<int:statval>')
 def game_move(statval):
-	print statval
-	co.update_page()
+
+	co.update_page(1)
 	return render_template('game.html')
 
 if __name__ == '__main__':
