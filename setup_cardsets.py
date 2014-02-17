@@ -163,25 +163,25 @@ class CardOperations(object):
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)
-#					if len(self.ps.PlayerSet2) == 0:
-#						return true
+					if len(self.ps.PlayerSet2) == 0:
+						return True
 				else:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)	
-#					if len(self.ps.PlayerSet1) == 0:
-#						return true
+					if len(self.ps.PlayerSet1) == 0:
+						return True
 			else:
 				self.result += "HE GOT YOUR CARD !"
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)
-#					if len(self.ps.PlayerSet1) == 0:
-#						return true
+					if len(self.ps.PlayerSet1) == 0:
+						return True
 				else:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)	
-#					if len(self.ps.PlayerSet2) == 0:
-#						return true
+					if len(self.ps.PlayerSet2) == 0:
+						return True
 				self.modify_ctrl((self.in_ctrl + 1) % 2)
 		else:
 			if compare_with_id(stat_id, stat1, stat2):
@@ -189,24 +189,34 @@ class CardOperations(object):
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)
-#					if len(self.ps.PlayerSet2) == 0:
-#						return true
+					if len(self.ps.PlayerSet2) == 0:
+						return True
 				else:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)	
-#					if len(self.ps.PlayerSet1) == 0:
-#						return true
+					if len(self.ps.PlayerSet1) == 0:
+						return True
 			else:
 				self.result += "HE GOT YOUR CARD !"
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)
-#					if len(self.ps.PlayerSet1) == 0:
-#						return true
+					if len(self.ps.PlayerSet1) == 0:
+						return True
 				else:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)	
-#					if len(self.ps.PlayerSet2) == 0:
-#						return true
+					if len(self.ps.PlayerSet2) == 0:
+						return True
 				self.modify_ctrl((self.in_ctrl + 1) % 2)
-#		return false
+		return False
+
+	def update_completion(self):
+		html_text = open("templates/original_result.html").read()
+
+		new_html_text = html_text \
+						.replace("***result***", '<div class="well">' + self.result + '</div>') \
+						.replace("***winner***", str(self.in_ctrl))
+
+		with open("templates/result.html") as f:
+			f.write(new_html_text)
