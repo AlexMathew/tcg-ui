@@ -35,15 +35,20 @@ def game():
 
 @app.route('/game/<statval>')
 def game_move(statval):
-	print str(statval) + type(statval)
-	completed = co.compare(statval)
-	print 'compared ' + str(completed)
-	if not completed:
+	try:
+		co.compare(int(statval))
 		co.update_page()
 		return render_template('game.html')
-	else:
-		co.update_completion()
-		return render_template('result.html')
+	except Exception as detail:
+		print detail
+#	completed = co.compare(statval)
+#	print 'compared ' + str(completed)
+#	if not completed:
+#		co.update_page()
+#		return render_template('game.html')
+#	else:
+#		co.update_completion()
+#		return render_template('result.html')
 
 if __name__ == '__main__':
 	app.run()

@@ -7,6 +7,12 @@ def compare_bbf(bbf1, bbf2):
 	return bbf1 > bbf2
 
 def compare_with_id(stat_id, stat1, stat2):
+	if int(stat1) == 0:
+		return False
+	elif int(stat2) == 0:
+		return True
+	else:
+		pass
 	if stat_id == 22 or stat_id == 23 or stat_id == 24:
 		return stat1 < stat2
 	return stat1 > stat2	
@@ -132,19 +138,24 @@ class CardOperations(object):
 		if stat_class == 1:
 			stat1 = self.ctrl.test[stat_id]
 			stat2 = self.vs.test[stat_id]
+			format = "Tests"
 		elif stat_class == 2:
 			stat1 = self.ctrl.odi[stat_id]
 			stat2 = self.vs.odi[stat_id]
+			format = "ODIs"
 		elif stat_class == 3:
 			stat1 = self.ctrl.t20[stat_id]
 			stat2 = self.vs.t20[stat_id]
+			format = "T20Is"
 		else:
 			stat1 = self.ctrl.fc[stat_id]
 			stat2 = self.vs.fc[stat_id]
+			format = "First Class cricket"
 		
-		self.result = self.ctrl.name + " had a " + stats_types[stat_id].replace("_", " ") + " stat of " + str(stat1) \
-					  + "\nThe other player had " + self.vs.name + ", who had a " + stats_types[stat_id].replace("_", " ") \
-					  + " stat of " + str(stat2) + "\n"
+		self.result = self.ctrl.name + " had a '" + stats_types[stat_id].replace("_", " ") + "' stat of " + str(stat1) \
+					  + " for " + format + ".\n" \
+					  + "\nThe other player had " + self.vs.name + ", who had a '" + stats_types[stat_id].replace("_", " ") \
+					  + "' stat of " + str(stat2) + " for " + format + ".\n"
 
 		if type(stat1) == str:
 			if compare_bbf(stat1, stat2):
@@ -152,48 +163,50 @@ class CardOperations(object):
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)
-					if len(self.ps.PlayerSet2) == 0:
-						return true
+#					if len(self.ps.PlayerSet2) == 0:
+#						return true
 				else:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)	
-					if len(self.ps.PlayerSet1) == 0:
-						return true
+#					if len(self.ps.PlayerSet1) == 0:
+#						return true
 			else:
 				self.result += "HE GOT YOUR CARD !"
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)
-					if len(self.ps.PlayerSet1) == 0:
-						return true
+#					if len(self.ps.PlayerSet1) == 0:
+#						return true
 				else:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)	
-					if len(self.ps.PlayerSet2) == 0:
-						return true
+#					if len(self.ps.PlayerSet2) == 0:
+#						return true
+				self.modify_ctrl((self.in_ctrl + 1) % 2)
 		else:
 			if compare_with_id(stat_id, stat1, stat2):
 				self.result += "YOU GOT HIS CARD !"
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)
-					if len(self.ps.PlayerSet2) == 0:
-						return true
+#					if len(self.ps.PlayerSet2) == 0:
+#						return true
 				else:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)	
-					if len(self.ps.PlayerSet1) == 0:
-						return true
+#					if len(self.ps.PlayerSet1) == 0:
+#						return true
 			else:
 				self.result += "HE GOT YOUR CARD !"
 				if self.in_ctrl == 0:
 					card = self.ps.PlayerSet1.pop()
 					self.ps.PlayerSet2.append(card)
-					if len(self.ps.PlayerSet1) == 0:
-						return true
+#					if len(self.ps.PlayerSet1) == 0:
+#						return true
 				else:
 					card = self.ps.PlayerSet2.pop()
 					self.ps.PlayerSet1.append(card)	
-					if len(self.ps.PlayerSet2) == 0:
-						return true
-		return false
+#					if len(self.ps.PlayerSet2) == 0:
+#						return true
+				self.modify_ctrl((self.in_ctrl + 1) % 2)
+#		return false
