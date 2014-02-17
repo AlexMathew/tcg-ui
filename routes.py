@@ -29,14 +29,21 @@ def begin():
 
 @app.route('/game')
 def game():
-	co.update_page(0)
+	co.update_page()
+	co.page_no = 1
 	return render_template('game.html')
 
-@app.route('/game/<int:statval>')
+@app.route('/game/<statval>')
 def game_move(statval):
-
-	co.update_page(1)
-	return render_template('game.html')
+	print str(statval) + type(statval)
+	completed = co.compare(statval)
+	print 'compared ' + str(completed)
+	if not completed:
+		co.update_page()
+		return render_template('game.html')
+	else:
+		co.update_completion()
+		return render_template('result.html')
 
 if __name__ == '__main__':
 	app.run()
