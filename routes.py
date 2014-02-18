@@ -17,9 +17,9 @@ def rules():
 def setup():
 	return render_template('setup.html')
 
-@app.route('/toss')
-def toss():
-	co.cardset()
+@app.route('/toss/<int:cardcount>')
+def toss(cardcount):
+	co.cardset(cardcount)
 	return render_template('toss.html')
 
 @app.route('/begin')

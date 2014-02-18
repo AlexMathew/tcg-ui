@@ -40,7 +40,6 @@ class Player(object):
 		self.test = test
 		self.odi = odi
 		self.t20 = t20
-#		self.fc = fc
 
 class PlayerStats(object):
 
@@ -49,7 +48,7 @@ class PlayerStats(object):
 		self.PlayerSet1 = deque()
 		self.PlayerSet2 = deque()
 
-	def generate_cards(self):
+	def generate_cards(self, cardcount):
 		conn = psycopg2.connect("dbname = stat_database user = postgres password = postgres")
 		c = conn.cursor()
 		c.execute("SELECT * FROM base_table")
@@ -61,12 +60,10 @@ class PlayerStats(object):
 		odi_list = c.fetchall()
 		c.execute("SELECT * FROM t20i_stats")
 		t20_list = c.fetchall()
-#		c.execute("SELECT * FROM fc_stats")
-#		fc_list = c.fetchall()
 		
 		options = range(len(player_list))
 
-		for i in xrange(5):
+		for i in xrange(cardcount):
 			random.shuffle(options)
 			
 			opt1 = options.pop()
@@ -76,7 +73,6 @@ class PlayerStats(object):
 			test1 = test_list[opt1]
 			odi1 = odi_list[opt1]
 			t201 = t20_list[opt1]
-#			fc1 = fc_list[opt1]
 			player1 = Player(name1, img_url1, test1, odi1, t201)
 			self.PlayerSet1.append(player1)
 
@@ -87,6 +83,5 @@ class PlayerStats(object):
 			test2 = test_list[opt2]
 			odi2 = odi_list[opt2]
 			t202 = t20_list[opt2]
-#			fc2 = fc_list[opt2]
 			player2 = Player(name2, img_url2, test2, odi2, t202)
 			self.PlayerSet2.append(player2)

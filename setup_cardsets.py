@@ -58,9 +58,9 @@ class CardOperations(object):
 		with open("templates/begin.html", "w") as f:
 			f.write(new_html_begin_text)
 
-	def cardset(self):
+	def cardset(self, cardcount):
 		self.ps = PlayerStats()
-		self.ps.generate_cards()
+		self.ps.generate_cards(cardcount)
 
 	def update_page(self):
 		p1 = self.ps.PlayerSet1[0]
