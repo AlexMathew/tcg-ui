@@ -34,13 +34,13 @@ stats_types = {
 
 class Player(object):
 
-	def __init__(self, name, img_url, test, odi, t20, fc):
+	def __init__(self, name, img_url, test, odi, t20):
 		self.name = name
 		self.img_url = img_url
 		self.test = test
 		self.odi = odi
 		self.t20 = t20
-		self.fc = fc
+#		self.fc = fc
 
 class PlayerStats(object):
 
@@ -61,8 +61,8 @@ class PlayerStats(object):
 		odi_list = c.fetchall()
 		c.execute("SELECT * FROM t20i_stats")
 		t20_list = c.fetchall()
-		c.execute("SELECT * FROM fc_stats")
-		fc_list = c.fetchall()
+#		c.execute("SELECT * FROM fc_stats")
+#		fc_list = c.fetchall()
 		
 		options = range(len(player_list))
 
@@ -76,8 +76,8 @@ class PlayerStats(object):
 			test1 = test_list[opt1]
 			odi1 = odi_list[opt1]
 			t201 = t20_list[opt1]
-			fc1 = fc_list[opt1]
-			player1 = Player(name1, img_url1, test1, odi1, t201, fc1)
+#			fc1 = fc_list[opt1]
+			player1 = Player(name1, img_url1, test1, odi1, t201)
 			self.PlayerSet1.append(player1)
 
 			opt2 = options.pop(0)
@@ -87,6 +87,6 @@ class PlayerStats(object):
 			test2 = test_list[opt2]
 			odi2 = odi_list[opt2]
 			t202 = t20_list[opt2]
-			fc2 = fc_list[opt2]
-			player2 = Player(name2, img_url2, test2, odi2, t202, fc2)
+#			fc2 = fc_list[opt2]
+			player2 = Player(name2, img_url2, test2, odi2, t202)
 			self.PlayerSet2.append(player2)

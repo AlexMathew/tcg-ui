@@ -132,21 +132,21 @@ class CardOperations(object):
 		new_html_text = new_html_text \
 						.replace("***t20stats***", stats)
 
-		stats = ""
-		linker = 4
-
-		for i in stats_types:
-			stat = stats_types[i]
-			if i==15 or i==17 or i==18:
-				continue
-			stats += statline \
-					 .replace("***statlink***", str(linker*100 + i)) \
-					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
-					 .replace("***value***", str(p.fc[i]))
-
-		new_html_text = new_html_text \
-						.replace("***fcstats***", stats)
-
+#		stats = ""
+#		linker = 4
+#
+#		for i in stats_types:
+#			stat = stats_types[i]
+#			if i==15 or i==17 or i==18:
+#				continue
+#			stats += statline \
+#					 .replace("***statlink***", str(linker*100 + i)) \
+#					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
+#					 .replace("***value***", str(p.fc[i]))
+#
+#		new_html_text = new_html_text \
+#						.replace("***fcstats***", stats)
+#
 		with open("templates/game.html", "w") as f:
 			f.write(new_html_text) 
 
@@ -161,14 +161,14 @@ class CardOperations(object):
 			stat1 = self.ctrl.odi[stat_id]
 			stat2 = self.vs.odi[stat_id]
 			format = "ODIs"
-		elif stat_class == 3:
+		else:
 			stat1 = self.ctrl.t20[stat_id]
 			stat2 = self.vs.t20[stat_id]
 			format = "T20Is"
-		else:
-			stat1 = self.ctrl.fc[stat_id]
-			stat2 = self.vs.fc[stat_id]
-			format = "First Class cricket"
+#		else:
+#			stat1 = self.ctrl.fc[stat_id]
+#			stat2 = self.vs.fc[stat_id]
+#			format = "First Class cricket"
 		
 		self.result = self.ctrl.name + " had a '" + stats_types[stat_id].replace("_", " ") + "' stat of " + str(stat1) \
 					  + " for " + format + ".\n" \
