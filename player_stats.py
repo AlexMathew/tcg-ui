@@ -66,7 +66,7 @@ class PlayerStats(object):
 		
 		options = range(len(player_list))
 
-		for i in xrange(21):
+		for i in xrange(5):
 			random.shuffle(options)
 			
 			opt1 = options.pop()

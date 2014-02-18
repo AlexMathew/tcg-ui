@@ -235,7 +235,7 @@ class CardOperations(object):
 
 		new_html_text = html_text \
 						.replace("***result***", '<div class="well">' + self.result + '</div>') \
-						.replace("***winner***", str(self.in_ctrl))
+						.replace("***winner***", str(self.in_ctrl + 1))
 
-		with open("templates/result.html") as f:
+		with open("templates/result.html", "w") as f:
 			f.write(new_html_text)
