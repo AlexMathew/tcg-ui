@@ -24,14 +24,17 @@ def toss(cardcount):
 
 @app.route('/begin')
 def begin():
-	co.toss_result()
-	return render_template('begin.html')
+	try:
+		co.toss_result()
+		return render_template('pages/begin.html')
+	except Exception as detail:
+		print detail
 
 @app.route('/game')
 def game():
 	co.update_page()
 	co.page_no = 1
-	return render_template('game.html')
+	return render_template('pages/game.html')
 
 @app.route('/game/<statval>')
 def game_move(statval):
@@ -39,10 +42,10 @@ def game_move(statval):
 		completed = co.compare(int(statval))
 		if not completed:
 			co.update_page()
-			return render_template('game.html')
+			return render_template('pages/game.html')
 		else:
 			co.update_completion()
-			return render_template('result.html')
+			return render_template('pages/result.html')
 	except Exception as detail:
 		print detail
 

@@ -55,7 +55,7 @@ class CardOperations(object):
 							  .replace("***tosswinner***", "Player " + str(self.in_ctrl + 1) \
 							  			+ " won the toss, so he will get to start") 
 		
-		with open("templates/begin.html", "w") as f:
+		with open("templates/pages/begin.html", "w") as f:
 			f.write(new_html_begin_text)
 
 	def cardset(self, cardcount):
@@ -147,7 +147,7 @@ class CardOperations(object):
 #		new_html_text = new_html_text \
 #						.replace("***fcstats***", stats)
 #
-		with open("templates/game.html", "w") as f:
+		with open("templates/pages/game.html", "w") as f:
 			f.write(new_html_text) 
 
 	def compare(self, stat):
@@ -237,5 +237,5 @@ class CardOperations(object):
 						.replace("***result***", '<div class="well">' + self.result + '</div>') \
 						.replace("***winner***", str(self.in_ctrl + 1))
 
-		with open("templates/result.html", "w") as f:
+		with open("templates/pages/result.html", "w") as f:
 			f.write(new_html_text)
