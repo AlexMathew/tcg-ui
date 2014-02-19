@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from setup_cardsets import CardOperations
 
 co = CardOperations()
@@ -44,10 +44,14 @@ def game_move(statval):
 			co.update_page()
 			return render_template('pages/game.html')
 		else:
-			co.update_completion()
-			return render_template('pages/result.html')
+			return redirect('/result')
 	except Exception as detail:
 		print detail
 
+@app.route('/result')
+def result():
+	co.update_completion()
+	return render_template('pages/result.html')
+	
 if __name__ == '__main__':
 	app.run()
