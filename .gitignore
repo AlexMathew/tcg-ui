@@ -30,6 +30,4 @@ pip-delete-this-directory.txt
 docs/_build/
 
 # Modified pages
-templates/begin.html
-templates/game.html
-templates/result.html
+*/pages/
