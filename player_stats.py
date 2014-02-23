@@ -49,7 +49,12 @@ class PlayerStats(object):
 		self.PlayerSet2 = deque()
 
 	def generate_cards(self, cardcount):
-		conn = psycopg2.connect("dbname = stat_database user = postgres password = postgres")
+		DB_NAME = os.environ['DB_NAME']
+		DB_USER = os.environ['DB_USER']
+		DB_PWD = os.environ['DB_PWD']
+
+		conn = psycopg2.connect("dbname = %s user = %s password = %s" % (DB_NAME, DB_USER, DB_PWD))
+
 		c = conn.cursor()
 		c.execute("SELECT * FROM base_table")
 		player_list = c.fetchall()

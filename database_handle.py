@@ -114,7 +114,7 @@ def update_database(option):
 	command_insert_fc = "INSERT INTO fc_stats " + stats_types + " VALUES " + placeholder 		
 
 	
-	player_set = revamped_trump.PlayerSet()
+	player_set = trump.PlayerSet()
 	player_list = player_set.generate_player_list()
 
 	for i, player in enumerate(player_list):
@@ -161,7 +161,8 @@ def main():
 			print "database_handle.py [--create] [--update] \n"
 			print "--create : Initial setup for the stat database"
 			print "--update : Updating the database"
-	except:
+	except Exception as detail:
+		print detail
 		print "ERROR ENCOUNTERED !!\n"
 		print "> Make sure you have trump.py in the same directory as this database setup program."
 		print "> Make sure you have the stat_database DB set up in PostgreSQL."
