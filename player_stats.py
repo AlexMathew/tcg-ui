@@ -1,6 +1,7 @@
 import psycopg2
 import random
 from collections import deque
+import urlparse
 
 stats_types = {
 			   1:"matches_played",
