@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect
 from setup_cardsets import CardOperations
+from player_stats import PlayerStats
 
 co = CardOperations()
 
@@ -19,7 +20,9 @@ def setup():
 
 @app.route('/toss/<int:cardcount>')
 def toss(cardcount):
-	co.cardset(cardcount)
+	ps = PlayerStats()
+	ps.generate_cards(cardcount)
+	co.cardset(ps)
 	return render_template('toss.html')
 
 @app.route('/begin')
