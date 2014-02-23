@@ -22,6 +22,7 @@ def setup():
 def toss(cardcount):
 	ps = PlayerStats()
 	ps.generate_cards(cardcount)
+	co.page_no = 0
 	co.cardset(ps)
 	return render_template('toss.html')
 
