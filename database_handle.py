@@ -4,6 +4,7 @@ import urllib
 import psycopg2
 import trump
 import os
+import urlparse
 
 
 def modify_stats_types(q):
@@ -39,11 +40,16 @@ def extract_stats(soup):
 
 
 def update_database(option):
-	DB_NAME = os.environ['DB_NAME']
-	DB_USER = os.environ['DB_USER']
-	DB_PWD = os.environ['DB_PWD']
+	urlparse.uses_netloc.append("postgres")
+	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
-	conn = psycopg2.connect("dbname = %s user = %s password = %s" % (DB_NAME, DB_USER, DB_PWD))
+	conn = psycopg2.connect(
+	    					database=url.path[1:],
+	    					user=url.username,
+	    					password=url.password,
+	    					host=url.hostname,
+	    					port=url.port
+							)
 	c = conn.cursor()
 
 	if option == '--create':
