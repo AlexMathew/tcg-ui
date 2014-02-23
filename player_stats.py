@@ -1,6 +1,7 @@
 import psycopg2
 import random
 from collections import deque
+import os
 import urlparse
 
 stats_types = {
