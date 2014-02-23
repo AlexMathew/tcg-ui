@@ -29,8 +29,4 @@ pip-delete-this-directory.txt
 # Sphinx documentation
 docs/_build/
 
-# Modified pages
-*/pages/
-TrumpCards_cache/
-
 requirements.txt
