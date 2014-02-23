@@ -1,34 +1,9 @@
 import urllib
 import random
-import os
 import datetime
 import sys
 from bs4 import BeautifulSoup as Soup
 import itertools
-
-
-def clear_old_cache(cache_dir):
-	"""
-	This method takes the directory path as its argument and clears out all the files in that directory.
-	"""
-
-	for item in os.listdir(cache_dir):
-		os.remove(str(cache_dir + item))
-
-
-def cache_text(complete_path, text):
-	"""
-	This method takes the file path and the text content as its arguments and stores this content in the file.
-	"""
-
-	cache_dir, filename = os.path.split(complete_path)
-	if(not os.path.exists(cache_dir)):
-		os.mkdir(cache_dir)
-	with open(complete_path, 'w') as f:
-		f.write(text)
-		f.close()
-	return
-
 
 class TeamSet(object):
 
@@ -40,25 +15,13 @@ class TeamSet(object):
 		"""
 		This method reads the HTML content from the Players list homepage on Cricinfo.
 		"""
-
-		cache_dir = "TrumpCards_cache/"
-		filename = str(datetime.datetime.now())[:10] + "_homepage"
-		complete_path = cache_dir + filename + ".txt"
-		
-		if os.path.exists(complete_path):
-			with open(complete_path, 'r') as f:
-				self.homepage_text = f.read()
-				f.close()
-		else:
-			print '\nEXTRACTING DATA..\n(The time taken depends on the speed of your Internet connection)\n'
-			homepage_url = "http://espncricinfo.com/ci/content/player/index.html"
-			try:
-				uf = urllib.urlopen(homepage_url)
-			except Exception:
-				sys.exit("\nPlease turn on your Internet connection to continue.")
-			self.homepage_text = uf.read()
-			clear_old_cache(cache_dir)
-			cache_text(complete_path, self.homepage_text)
+		print '\nEXTRACTING DATA..\n(The time taken depends on the speed of your Internet connection)\n'
+		homepage_url = "http://espncricinfo.com/ci/content/player/index.html"
+		try:
+			uf = urllib.urlopen(homepage_url)
+		except Exception:
+			sys.exit("\nPlease turn on your Internet connection to continue.")
+		self.homepage_text = uf.read()
 			
 	def generate_teams(self):
 		"""
@@ -92,37 +55,19 @@ class PlayerSet(TeamSet):
 
 		text = ""
 
-		cache_dir = "TrumpCards_cache/"
-		filename = str(datetime.datetime.now())[:10] + "_"
-		complete_path = cache_dir + filename
-		existence_test_file_path = complete_path + ("India.txt")
-
 		players = []
 		
-		if os.path.exists(existence_test_file_path):
-			for filename in os.listdir(cache_dir):
-				if "homepage" in filename:
-					continue
-				team = cache_dir + filename
-				team_text = open(team).read()
-				soup = Soup(team_text)
-				td_list = soup.findAll('td')
-				players.extend([("http://espncricinfo.com" + link.a.get('href'), link.text) 
-								for link in soup.find(id = "rectPlyr_Playerlisttest").findAll('td')])
-				
-		else:
-			for member in self.full_members:
-				team_page_url = "http://espncricinfo.com" + member[0]
-				try:
-					uf = urllib.urlopen(team_page_url)
-				except Exception:
-					sys.exit("\nPlease turn on your Internet connection.")
-				team_text = uf.read()
-				soup = Soup(team_text)
-				players.extend([("http://espncricinfo.com" + link.a.get('href'), link.text) 
-								for link in soup.find(id = "rectPlyr_Playerlisttest").findAll('td')])
-				team_path = complete_path + member[1] + ".txt"
-				cache_text(team_path, team_text)
+		for member in self.full_members:
+			team_page_url = "http://espncricinfo.com" + member[0]
+			try:
+				uf = urllib.urlopen(team_page_url)
+			except Exception:
+				sys.exit("\nPlease turn on your Internet connection.")
+			team_text = uf.read()
+			soup = Soup(team_text)
+			players.extend([("http://espncricinfo.com" + link.a.get('href'), link.text) 
+							for link in soup.find(id = "rectPlyr_Playerlisttest").findAll('td')])
+			team_path = complete_path + member[1] + ".txt"
 
 		self.player_set = set(players)
 
