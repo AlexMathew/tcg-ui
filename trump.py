@@ -67,7 +67,6 @@ class PlayerSet(TeamSet):
 			soup = Soup(team_text)
 			players.extend([("http://espncricinfo.com" + link.a.get('href'), link.text) 
 							for link in soup.find(id = "rectPlyr_Playerlisttest").findAll('td')])
-			team_path = complete_path + member[1] + ".txt"
 
 		self.player_set = set(players)
 
