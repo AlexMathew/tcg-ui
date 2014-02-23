@@ -1,0 +1,2 @@
+web: gunicorn routes:app
+worker: python database_handle.py --create
