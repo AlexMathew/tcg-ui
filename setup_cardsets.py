@@ -38,6 +38,9 @@ def compare_with_id(stat_id, stat1, stat2):
 class CardOperations(object):
 
 	def __init__(self):
+		self.reset()
+
+	def reset(self):
 		self.in_ctrl = 0
 		self.page_no = 0
 		self.result = ""

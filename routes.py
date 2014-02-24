@@ -20,9 +20,9 @@ def setup():
 
 @app.route('/toss/<int:cardcount>')
 def toss(cardcount):
+	co.reset()
 	ps = PlayerStats()
 	ps.generate_cards(cardcount)
-	co.page_no = 0
 	co.cardset(ps)
 	return render_template('toss.html')
 
