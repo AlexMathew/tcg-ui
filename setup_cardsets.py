@@ -172,6 +172,14 @@ class CardOperations(object):
 #			stat2 = self.vs.fc[stat_id]
 #			format = "First Class cricket"
 		
+		if stat1 == stat2:
+			self.result = "CLASH !!! " + self.ctrl.name + " and " + self.vs.name + " had a '" + \
+						  + stats_types[stat_id].replace("_", " ") + "' stat of " + str(stat1) + " for " + format + ".\n" \
+						  + " Player " + str(self.in_ctrl + 1) + " go again and select another stat !"
+			self.ps.PlayerSet1.rotate(1)			
+			self.ps.PlayerSet2.rotate(1)
+			return False
+
 		self.result = self.ctrl.name + " had a '" + stats_types[stat_id].replace("_", " ") + "' stat of " + str(stat1) \
 					  + " for " + format + ".\n" \
 					  + "\nThe other player had " + self.vs.name + ", who had a '" + stats_types[stat_id].replace("_", " ") \

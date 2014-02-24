@@ -20,11 +20,14 @@ def setup():
 
 @app.route('/toss/<int:cardcount>')
 def toss(cardcount):
-	co.reset()
-	ps = PlayerStats()
-	ps.generate_cards(cardcount)
-	co.cardset(ps)
-	return render_template('toss.html')
+	try:
+		co.reset()
+		ps = PlayerStats()
+		ps.generate_cards(cardcount)
+		co.cardset(ps)
+		return render_template('toss.html')
+	except Exception as detail:
+		print detail
 
 @app.route('/begin')
 def begin():
