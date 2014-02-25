@@ -48,8 +48,7 @@ def game_move(statval):
 	try:
 		completed = co.compare(int(statval))
 		if not completed:
-			co.update_page()
-			return render_template('pages/game.html')
+			return redirect('/game')
 		else:
 			return redirect('/result')
 	except Exception as detail:
