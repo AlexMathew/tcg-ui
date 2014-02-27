@@ -101,6 +101,12 @@ class CardOperations(object):
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.test[i]))
 
+		for _ in xrange(2):
+			stats += statline \
+					 .replace("***statlink***", str(linker*100 + 27)) \
+					 .replace("***stat***", "") \
+					 .replace("***value***", "")
+
 		new_html_text = new_html_text \
 						.replace("***teststats***", stats)
 
@@ -115,6 +121,12 @@ class CardOperations(object):
 					 .replace("***statlink***", str(linker*100 + i)) \
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.odi[i]))
+
+		for _ in xrange(2):
+			stats += statline \
+					 .replace("***statlink***", str(linker*100 + 27)) \
+					 .replace("***stat***", "") \
+					 .replace("***value***", "")
 
 		new_html_text = new_html_text \
 						.replace("***odistats***", stats)
@@ -131,24 +143,15 @@ class CardOperations(object):
 					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
 					 .replace("***value***", str(p.t20[i]))
 
+		for _ in xrange(2):
+			stats += statline \
+					 .replace("***statlink***", str(linker*100 + 27)) \
+					 .replace("***stat***", "") \
+					 .replace("***value***", "")
+
 		new_html_text = new_html_text \
 						.replace("***t20stats***", stats)
 
-#		stats = ""
-#		linker = 4
-#
-#		for i in stats_types:
-#			stat = stats_types[i]
-#			if i==15 or i==17 or i==18:
-#				continue
-#			stats += statline \
-#					 .replace("***statlink***", str(linker*100 + i)) \
-#					 .replace("***stat***", stat.replace("_", " ").capitalize()) \
-#					 .replace("***value***", str(p.fc[i]))
-#
-#		new_html_text = new_html_text \
-#						.replace("***fcstats***", stats)
-#
 		with open("templates/pages/game.html", "w") as f:
 			f.write(new_html_text) 
 
