@@ -3,9 +3,7 @@ from bs4 import BeautifulSoup as Soup
 import urllib
 import psycopg2
 import trump
-import os
-import urlparse
-
+import lxml
 
 def modify_stats_types(q):
 	for item in q:
@@ -40,16 +38,7 @@ def extract_stats(soup):
 
 
 def update_database(option):
-	urlparse.uses_netloc.append("postgres")
-	url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-	conn = psycopg2.connect(
-	    					database=url.path[1:],
-	    					user=url.username,
-	    					password=url.password,
-	    					host=url.hostname,
-	    					port=url.port
-							)
+	conn = psycopg2.connect("dbname = stat_database user = postgres password = postgres")
 	c = conn.cursor()
 
 	if option == '--create':
@@ -127,7 +116,7 @@ def update_database(option):
 		print 'Currently updating stats of player ' + str(i + 1) + " -- " + str(player[1]) + "..." 
 
 		playerHtml = urllib.urlopen(player[0])
-		soup = Soup(playerHtml)
+		soup = Soup(playerHtml, "lxml")
 	
 		name = str(soup.title.text.split(' |')[0])
 		img_link = "http://espncricinfo.com" + soup.findAll('img')[1].get('src')
@@ -144,6 +133,11 @@ def update_database(option):
 		c.execute(command_insert_t20i, stats[2])
 		c.execute(command_insert_fc, stats[3])
 
+		if divmod(i+1, 10)[1] == 0:
+			print '\nIntermediate commit\n'
+			conn.commit()
+
+	print '\nFinal commit\n'
 	conn.commit()
 
 	c.close()
@@ -169,7 +163,7 @@ def main():
 			print "--update : Updating the database"
 	except Exception as detail:
 		print detail
-		print "ERROR ENCOUNTERED !!\n"
+		print "\nERROR ENCOUNTERED !!\n"
 		print "> Make sure you have trump.py in the same directory as this database setup program."
 		print "> Make sure you have the stat_database DB set up in PostgreSQL."
 		print "> If you run --create, make sure that this is the first time you are running this program. If it isn't the first time, use --update instead. "
