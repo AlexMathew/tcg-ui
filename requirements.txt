@@ -11,3 +11,4 @@ python-dateutil==2.2
 requests==2.1.0
 requests-cache==0.4.4
 virtualenv==1.6.1
+lxml==3.3.2
