@@ -145,11 +145,9 @@ def update_database(option):
 		c.execute(command_insert_t20i, stats[2])
 		c.execute(command_insert_fc, stats[3])
 
-		if divmod(i+1, 10)[1] == 0:
-			print '\nIntermediate commit\n'
+		if (i > 100) and (i % 30 == 0):
 			conn.commit()
 
-	print '\nFinal commit\n'
 	conn.commit()
 
 	c.close()
