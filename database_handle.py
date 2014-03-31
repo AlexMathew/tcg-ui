@@ -131,7 +131,7 @@ def update_database(option):
 		soup = Soup(playerHtml, "lxml")
 	
 		name = str(soup.title.text.split(' |')[0])
-		img_link = "http://espncricinfo.com" + soup.findAll('img')[2].get('src')
+		img_link = "http://espncricinfo.com" + soup.findAll('img')[2].get('src') # May have to be updated due to site layout changes
 
 		try:
 			stats = extract_stats(soup)		
